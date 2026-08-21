@@ -5,8 +5,7 @@
   "license": "proprietary",
   "require": {
     "php": ">=8.3.0",
-    "league/csv": "^9.0",
-    "vlucas/phpdotenv": "^5.6"
+    "league/csv": "^9.0"
   },
   "require-dev": {
     "monolog/monolog": "^3.9"
@@ -22,9 +21,7 @@
     }
   },
   "scripts": {
-    "lint": "echo LINT not implemented yet",
-    "findbugs": "echo FINDBUGS not implemented yet",
-    "mypy": "echo MYPY not implemented yet",
-    "test": "echo TEST not implemented yet"
+    "lint": "find src tests cli public -type f -name '*.php' -exec php -l {} +",
+    "test": "php tests/internal_test.php"
   }
 }
