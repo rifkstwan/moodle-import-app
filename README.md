@@ -9,7 +9,7 @@ A robust and scalable user import application built with **PHP 8.3**, **PostgreS
 - [Architecture & Shared Logic](#architecture--shared-logic)
 - [Requirements](#requirements)
 - [Installation & Getting Started](#installation--getting-started)
-- [Database Configuration](#database-configuration)
+- [Database & Environment Configuration](#database--environment-configuration)
 - [Web UI Usage](#web-ui-usage)
 - [CLI Usage & Examples](#cli-usage--examples)
 - [Automated Testing](#automated-testing)
@@ -95,7 +95,9 @@ docker compose down
 
 ---
 
-## 🗄️ Database Configuration
+## 🗄️ Database & Environment Configuration
+
+### Database Configuration (Backend)
 
 Database parameters are loaded from environment variables or the `.env` file located in the `backend/` directory:
 
@@ -117,6 +119,15 @@ CREATE TABLE users (
     email     VARCHAR(255) NOT NULL UNIQUE
 );
 ```
+
+### Frontend Configuration
+
+Frontend parameters can be configured via environment variables or a `.env` file in the `frontend/` directory (see `frontend/.env.example`):
+
+| Variable | Default Value | Description |
+| :--- | :--- | :--- |
+| `VITE_API_BASE` | `http://localhost:8080/api` | Base URL for the backend REST API |
+
 
 ---
 
@@ -270,6 +281,7 @@ moodle-import-app/
 │   │   ├── App.jsx              # Main React container
 │   │   ├── main.jsx             # React entrypoint
 │   │   └── index.css            # Clean modern design system
+│   ├── .env.example             # Frontend environment variables template
 │   ├── index.html               # HTML document template
 │   └── package.json             # Frontend dependencies (React, Vite)
 ├── users.csv                    # Sample test data file
