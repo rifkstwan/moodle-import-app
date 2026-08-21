@@ -77,8 +77,8 @@ class Database
         return $result[0] ?? null;
     }
 
-    public function lastInsertId(): int
+    public function lastInsertId(?string $name = null): int
     {
-        return (int)self::getConnection()->lastInsertId();
+        return (int) self::getConnection()->lastInsertId($name);
     }
 }

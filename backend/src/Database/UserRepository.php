@@ -32,18 +32,16 @@ class UserRepository
      */
     public function insertUser(array $userData): int
     {
-        $name = self::escape($userData[0]);
-        $surname = self::escape($userData[1]);
-        $email = self::escape($userData[2]);
-
-        $sql = 'INSERT INTO users (name, surname, email) VALUES (:name, :surname, :email)';
-        $this->db->prepare($sql)->execute([
-            ':name' => $name,
-            ':surname' => $surname,
-            ':email' => $email,
+        $sql = 'INSERT INTO users (name, surname, email) VALUES (:name, :surname, :email) RETURNING id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':name' => $userData[0],
+            ':surname' => $userData[1],
+            ':email' => $userData[2],
         ]);
 
-        return $this->db->lastInsertId();
+        $id = $stmt->fetchColumn();
+        return (int) $id;
     }
 
     /**
@@ -54,15 +52,5 @@ class UserRepository
         $sql = 'SELECT 1 FROM users WHERE email = :email LIMIT 1';
         $result = $this->db->fetchOne($sql, [':email' => $email]);
         return $result === null;
-    }
-
-    private static function escape(string $string): string
-    {
-        if (!function_exists('pg_escape_string')) {
-            return htmlspecialchars($string, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-        }
-
-        // Prefer pg_escape_string when available (for Live env)
-        return (string) pg_escape_string(null, $string);
     }
 }
