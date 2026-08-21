@@ -7,7 +7,7 @@ CREATE TABLE users
     id        BIGSERIAL PRIMARY KEY,
     name      VARCHAR(255) NOT NULL,
     surname   VARCHAR(255) NOT NULL,
-    email     VARCHAR(255) NOT NULL UNIQUE NOT NULL
+    email     VARCHAR(255) NOT NULL UNIQUE
 );
 
 COMMENT ON TABLE users IS 'User accounts imported via CSV upload';
