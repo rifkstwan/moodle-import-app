@@ -1,0 +1,30 @@
+{
+  "name": "moodle/import-app-backend",
+  "type": "project",
+  "description": "User import app backend - PHP 8.3 + PSR-7-ish sanity, CSV -> Postgres",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.3.0",
+    "league/csv": "^9.0",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "require-dev": {
+    "monolog/monolog": "^3.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "MoodleImportApp\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MoodleImportApp\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "lint": "echo LINT not implemented yet",
+    "findbugs": "echo FINDBUGS not implemented yet",
+    "mypy": "echo MYPY not implemented yet",
+    "test": "echo TEST not implemented yet"
+  }
+}
